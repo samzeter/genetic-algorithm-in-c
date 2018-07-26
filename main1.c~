@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
+
+int main() {
+
+  //seeding the rand() function
+    time_t t;
+    srand((unsigned) time(&t));
+
+    // list of the available words
+    char charset[] = "abcdefghijklmnopqrstuvwxyz";
+
+    // initialising char pointer array to null
+    char *randomString = NULL;
+
+    char *theWord = "cat";
+
+    // size of the words being generated
+    unsigned char str_len = 3;
+
+    // allowing for n number random words to be created
+    //    size_t n = 10;
+    //    for(size_t i = 0; i < n; i++)
+    while(1)
+      {
+	// set memory allocation for the word
+	randomString =  malloc((str_len + 1) * sizeof(char));
+
+	// make the word
+	for (int k = 0; k < str_len; k++)
+	  {
+	    int key = rand() % (int)(sizeof(charset) - 1);
+	    randomString[k] = charset[key];
+	  }
+
+    randomString[str_len] = '\0';
+
+    // print words to terminal
+    printf("%s", randomString);
+    printf("\n");
+    int test = strcmp(randomString,randomString);
+    printf("%d",test);
+    free(randomString);
+      }
+    
+    return 0;
+}
